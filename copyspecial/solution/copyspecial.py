@@ -10,7 +10,7 @@ import sys
 import re
 import os
 import shutil
-import commands
+import zipfile
 
 """Copy Special exercise
 """
@@ -40,16 +40,14 @@ def copy_to(paths, to_dir):
         # could error out if already exists os.path.exists():
 
 
-def zip_to(paths, zipfile):
+def zip_to(paths, zip_file):
     """Zip up all of the given files into a new zip file with the given name."""
-    cmd = 'zip -j ' + zipfile + ' ' + ' '.join(paths)
-    print "Command I'm going to do:" + cmd
-    (status, output) = commands.getstatusoutput(cmd)
-    # If command had a problem (status is non-zero),
-    # print its output to stderr and exit.
-    if status:
-        sys.stderr.write(output)
-        sys.exit(1)
+    zf = zipfile.ZipFile(zip_file, mode='w')
+    try:
+        for path in paths:
+            zf.write(path)
+    finally:
+        zf.close()
 
 # LAB(end solution)
 
@@ -62,7 +60,7 @@ def main():
     # which is the script itself.
     args = sys.argv[1:]
     if not args:
-        print "usage: [--todir dir][--tozip zipfile] dir [dir ...]";
+        print "usage: [--todir dir][--tozip zipfile] dir [dir ...]"
         sys.exit(1)
 
     # todir and tozip are either set from command line

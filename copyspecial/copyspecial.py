@@ -10,7 +10,7 @@ import sys
 import re
 import os
 import shutil
-import commands
+import zipfile
 
 """Copy Special exercise
 """
