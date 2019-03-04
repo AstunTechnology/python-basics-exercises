@@ -111,7 +111,7 @@ def main(write_summary, baby_files):
             outf.write(text + '\n')
             outf.close()
         else:
-            print text
+            print(text)
     # LAB(end solution)
 
 main(False, ['baby1990.html'])

@@ -70,7 +70,7 @@ def print_words(filename):
     word_count = word_count_dict(filename)
     words = sorted(word_count.keys())
     for word in words:
-        print word, word_count[word]
+        print(word, word_count[word])
 
 
 def get_count(word_count_tuple):
@@ -84,11 +84,11 @@ def print_top(filename):
 
     # Each item is a (word, count) tuple.
     # Sort them so the big counts are first using key=get_count() to extract count.
-    items = sorted(word_count.items(), key=get_count, reverse=True)
+    items = sorted(list(word_count.items()), key=get_count, reverse=True)
 
     # Print the first 20
     for item in items[:20]:
-        print item[0], item[1]
+        print(item[0], item[1])
 
 ##### LAB(end solution)
 
